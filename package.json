@@ -1,0 +1,23 @@
+{
+  "name": "SortAlgorithm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/temisrei/SortAlgorithm.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/temisrei/SortAlgorithm/issues"
+  },
+  "homepage": "https://github.com/temisrei/SortAlgorithm#readme",
+  "dependencies": {
+    "performance-now": "^2.1.0"
+  }
+}

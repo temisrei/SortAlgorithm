@@ -1,11 +1,14 @@
 <?php
+// $ php quick_sort.php
+// $ php quick_sort.php method=left
+// $ php quick_sort.php method=middle
 
 $pivotDefault = 'left';
 
 if ($argc > 1) {
   list($key, $val) = explode('=',$argv[1]);
   $para[$key] = $val;
-} else if ($key !== 'pivot' || isset($val)) {
+} else {
   $val = $pivotDefault;
 }
   
@@ -24,8 +27,15 @@ function quick_sort($arr, $pivot) {
 
   switch ($pivot) {
     case 'left':
-      # code...
-      # default case
+      $mid_value = $arr[0];
+      
+      for ($i = 1; $i < $len; $i++) {
+        if ($arr[$i] < $mid_value) {
+          $left[] = $arr[$i]; // array_push
+        } else {
+          $right[] = $arr[$i];
+        }
+      }
       break;
     case 'middle':
       $mid_index = $len>>1;
@@ -43,15 +53,7 @@ function quick_sort($arr, $pivot) {
       }
       break;
     default:
-      $mid_value = $arr[0];
-      
-      for ($i = 1; $i < $len; $i++) {
-        if ($arr[$i] < $mid_value) {
-          $left[] = $arr[$i]; // array_push
-        } else {
-          $right[] = $arr[$i];
-        }
-      }
+      # code...
       break;
   }
 
@@ -65,5 +67,5 @@ $totalTime = number_format(($end - $start) * 1000, 5, '.', '');
 
 echo 'After: ' . implode(',', $arr) . "\n";
 
-// echo '# Pivot: ' . $val . "\n";
+echo '# Pivot: ' . $val . "\n";
 echo 'Total Execution Time: ' . $totalTime . 'ms' . "\n";
