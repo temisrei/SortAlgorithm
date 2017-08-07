@@ -1,9 +1,19 @@
 <?php
 
+$pivotDefault = 'left';
+
+if ($argc > 1) {
+  list($key, $val) = explode('=',$argv[1]);
+  $para[$key] = $val;
+} else if ($key !== 'pivot' || isset($val)) {
+  $val = $pivotDefault;
+}
+  
+
 $arr = array(21, 34, 3, 32, 82, 55, 89, 50, 37, 5, 64, 35, 9, 70);
 echo 'Before: ' . implode(',', $arr) . "\n";
 
-function quick_sort($arr, $pivot='left') {
+function quick_sort($arr, $pivot) {
   $len = count($arr);
 
   if ($len <= 1)
@@ -14,15 +24,8 @@ function quick_sort($arr, $pivot='left') {
 
   switch ($pivot) {
     case 'left':
-      $mid_value = $arr[0];
-      
-      for ($i = 1; $i < $len; $i++) {
-        if ($arr[$i] < $mid_value) {
-          $left[] = $arr[$i]; // array_push
-        } else {
-          $right[] = $arr[$i];
-        }
-      }
+      # code...
+      # default case
       break;
     case 'middle':
       $mid_index = $len>>1;
@@ -40,7 +43,15 @@ function quick_sort($arr, $pivot='left') {
       }
       break;
     default:
-      # code...
+      $mid_value = $arr[0];
+      
+      for ($i = 1; $i < $len; $i++) {
+        if ($arr[$i] < $mid_value) {
+          $left[] = $arr[$i]; // array_push
+        } else {
+          $right[] = $arr[$i];
+        }
+      }
       break;
   }
 
@@ -48,9 +59,11 @@ function quick_sort($arr, $pivot='left') {
 }
 
 $start = microtime(true);
-$arr = quick_sort($arr, 'left');
+$arr = quick_sort($arr, $val);
 $end = microtime(true);
 $totalTime = number_format(($end - $start) * 1000, 5, '.', '');
+
 echo 'After: ' . implode(',', $arr) . "\n";
 
+// echo '# Pivot: ' . $val . "\n";
 echo 'Total Execution Time: ' . $totalTime . 'ms' . "\n";
